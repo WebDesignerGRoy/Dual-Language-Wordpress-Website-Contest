@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonsai - Oasis of Serenity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+Arabic:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c6e49;
+            --secondary-color: #4c956c;
+            --accent-color: #fefee3;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --font-primary: 'Noto Sans JP', sans-serif;
+            --font-secondary: 'Noto Sans Arabic', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav li {
+            margin-left: 2rem;
+        }
+
+        .main-nav a {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-color);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .main-nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover:after {
+            width: 100%;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .language-switcher a {
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .language-switcher a.active {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--primary-color);
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background-color: #000;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background-color: var(--light-gray);
+        }
+
+        .philosophy-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .philosophy-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .philosophy-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Investment Section */
+        .investment {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .investment .section-title h2 {
+            color: #fff;
+        }
+
+        .investment .section-title h2:after {
+            background-color: #fff;
+        }
+
+        .investment-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .investment-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .investment-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .investment-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .investment-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Location Section */
+        .location-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .location-map {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .location-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-member-content {
+            padding: 1.5rem;
+        }
+
+        .team-member h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--light-gray);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .contact .section-title h2 {
+            color: #fff;
+        }
+
+        .contact .section-title h2:after {
+            background-color: #fff;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-item i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--accent-color);
+        }
+
+        .contact-info-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: #fff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-widget h3 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-widget h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-widget p,
+        .footer-widget ul {
+            margin-bottom: 1rem;
+        }
+
+        .footer-widget ul {
+            list-style: none;
+        }
+
+        .footer-widget ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-widget a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+
+        .footer-widget a:hover {
+            color: #fff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .main-nav {
+                margin-top: 1rem;
+                width: 100%;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .main-nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .team-grid,
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.75rem;
+            }
+            
+            .team-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#">
+                    <img style="width: 50%; height: 50%; " src="https://i.postimg.cc/ydPFk5J8/Chat-GPT-Image-Nov-17-2025-09-43-36-PM.png" alt="Bonsai Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#designer">Designer</a></li>
+                    <li><a href="#serenity">Serenity</a></li>
+                    <li><a href="#project">Project</a></li>
+                    <li><a href="#brochure">Brochure</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <a href="#" class="active">EN</a>
+                <a href="#">AR</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Oasis of Serenity">
+        </div>
+        <div class="hero-content">
+            <h1>Oasis of Serenity</h1>
+            <p>Experience tranquility and luxury in the heart of the city. Bonsai offers a unique living experience inspired by Japanese design principles.</p>
+            <a href="#project" class="btn">Explore Project</a>
+        </div>
+    </section>
+
+    <!-- Serenity Video Section -->
+    <section class="serenity-video fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Serenity Video</h2>
+            </div>
+            <div class="video-container">
+                <!-- <iframe src="https://i.postimg.cc/m2RxHpmw/youtube.png" title="Serenity Video" allowfullscreen></iframe> -->
+                <img src="https://i.postimg.cc/m2RxHpmw/youtube.png" alt="Oasis of Serenity">
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonsai Philosophy Section -->
+    <section class="philosophy fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bonsai Philosophy</h2>
+            </div>
+            <div class="philosophy-content">
+                <div class="philosophy-text">
+                    <p>The art of Bonsai teaches us patience, care, and attention to detail. These principles are at the core of our design philosophy, creating spaces that nurture both body and soul.</p>
+                    <p>Our approach combines minimalist Japanese aesthetics with modern functionality, resulting in homes that are both beautiful and practical.</p>
+                    <a href="#serenity" class="btn">Learn More</a>
+                </div>
+                <div class="philosophy-image">
+                    <img src="https://images.unsplash.com/photo-1520412099638-9e7c0b7c5a7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Bonsai Philosophy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractive Investment Section -->
+    <section class="investment fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Attractive Investment</h2>
+            </div>
+            <div class="investment-content">
+                <div class="investment-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>High ROI</h3>
+                    <p>Our properties offer excellent return on investment with projected annual growth of 8-12%.</p>
+                </div>
+                <div class="investment-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Investment</h3>
+                    <p>Backed by reputable developers with a track record of successful projects.</p>
+                </div>
+                <div class="investment-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Premium Location</h3>
+                    <p>Strategically located in high-growth areas with excellent infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vibrant Location Section -->
+    <section class="location fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Vibrant Location</h2>
+            </div>
+            <div class="location-content">
+                <div class="location-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.1234567890123!2d46.67890123456789!3d24.712345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ0LjQiTiA0NsKwNDAnNDcuNCJF!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="location-text">
+                    <h3>Prime Location in Riyadh</h3>
+                    <p>Located in one of Riyadh's most prestigious neighborhoods, Bonsai offers easy access to:</p>
+                    <ul>
+                        <li>Major business districts</li>
+                        <li>International schools</li>
+                        <li>Shopping centers</li>
+                        <li>Healthcare facilities</li>
+                        <li>Recreational areas</li>
+                    </ul>
+                    <p>With excellent connectivity to major highways and public transport, Bonsai is perfectly positioned for modern urban living.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="team fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Team Member">
+                    <div class="team-member-content">
+                        <h3>Ahmed Al-Saud</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://i.postimg.cc/3xMtvsSx/Sarah-Johnson.jpg" alt="Team Member">
+                    <div class="team-member-content">
+                        <h3>Sarah Johnson</h3>
+                        <p>Lead Architect</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Team Member">
+                    <div class="team-member-content">
+                        <h3>Mohammed Hassan</h3>
+                        <p>Project Manager</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Team Member">
+                    <div class="team-member-content">
+                        <h3>Fatima Al-Rashid</h3>
+                        <p>Interior Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>King Fahd Road, Riyadh, Saudi Arabia</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+966 12 345 6789</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@bonsai.sa</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Working Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            <p>Saturday: 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-widget">
+                    <h3>About Bonsai</h3>
+                    <p>Bonsai is a premier real estate development company creating harmonious living spaces inspired by Japanese design principles.</p>
+                </div>
+                <div class="footer-widget">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#designer">Designer</a></li>
+                        <li><a href="#serenity">Serenity</a></li>
+                        <li><a href="#project">Project</a></li>
+                        <li><a href="#brochure">Brochure</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Contact Us</h3>
+                    <p>King Fahd Road, Riyadh, Saudi Arabia</p>
+                    <p>+966 12 345 6789</p>
+                    <p>info@bonsai.sa</p>
+                </div>
+                <div class="footer-widget">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Bonsai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        fadeInOnScroll(); // Run once on load
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.hero-image');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = 'Thank you for your message! We will contact you soon.';
+            formMessage.style.color = '#fff';
+            formMessage.style.padding = '10px';
+            formMessage.style.marginTop = '10px';
+            formMessage.style.borderRadius = '5px';
+            formMessage.style.backgroundColor = 'rgba(76, 149, 108, 0.7)';
+            formMessage.style.display = 'block';
+            
+            this.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+
+        // Sticky header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.5rem 0';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '1rem 0';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Gallery lightbox (simplified version)
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                const lightbox = document.createElement('div');
+                lightbox.style.position = 'fixed';
+                lightbox.style.top = '0';
+                lightbox.style.left = '0';
+                lightbox.style.width = '100%';
+                lightbox.style.height = '100%';
+                lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                lightbox.style.display = 'flex';
+                lightbox.style.justifyContent = 'center';
+                lightbox.style.alignItems = 'center';
+                lightbox.style.zIndex = '2000';
+                lightbox.style.cursor = 'pointer';
+                
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.style.maxWidth = '90%';
+                img.style.maxHeight = '90%';
+                img.style.borderRadius = '10px';
+                
+                lightbox.appendChild(img);
+                document.body.appendChild(lightbox);
+                
+                lightbox.addEventListener('click', () => {
+                    document.body.removeChild(lightbox);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
